@@ -39,5 +39,9 @@ xpath_dict = {
         "googleDrive_btn" : "(//img[contains(@src,'drive.png')]/ancestor::div[1])[1]",
         "oneDrive_btn" : "(//img[contains(@src,'360.png')])[1]",
         "Page_btn" : "//i[@class='far fa-file ng-star-inserted']",
-        "google_drive_save_btn" : "//div[contains(@class,'small-centered')]//button"
+        "google_drive_save_btn" : "//div[contains(@class,'small-centered')]//button",
+
+        "add_link_input" : "(//input[contains(@class,'attach-link__input')])[1]",
+        "add_link__name_input" : "(//input[contains(@class,'attach-link__input')])[2]",
+        "save_btn" : "(//span[contains(text(),'Save')]/ancestor::button)[1]",
 }

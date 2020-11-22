@@ -12,7 +12,13 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 #try this for the firefoxDriveer
 #		driver = webdriver.Chrome(executable_path=r'D:PATHchromedriver.exe')
-driver = webdriver.Firefox()
+#		driver = webdriver.Chrome(executable_path=r'D:PATHchromedriver.exe')
+
+
+options = webdriver.FirefoxOptions()
+options.set_preference("media.navigator.permission.disabled", True)
+
+driver = webdriver.Firefox(firefox_options=options)
 driver.implicitly_wait(15)
 
 OtusEmail = ""
@@ -46,6 +52,10 @@ def Send_Keys(keys):
     html = driver.find_element_by_tag_name('html')
     html.send_keys(Keys.PAGE_DOWN)
     html.send_keys(keys)
+
+def Click_Back_To_Dom():
+    html = driver.find_element_by_tag_name('html')
+    html.click()
 
 def Get_element_text(xpath):
     Wait_For_Element(xpath)

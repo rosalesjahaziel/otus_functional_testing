@@ -223,11 +223,9 @@ class Case_bookshelf04(unittest.TestCase):
         utils.Find_and_Click("//span[contains(text(),'Delete')]")
         utils.Find_and_Click("//button[contains(text(),'Delete')]")
         time.sleep(2)
-        try:
-            self.assertFalse(utils.Is_Element_Displayed(Document_to_Verify))
-        except:
-            self.assertTrue(True)            
-            print("Document was deleted")
+        self.assertFalse(utils.Validate_if_Element_exist(Document_to_Verify))
+        
+        print("Document was deleted")
 
     def tearDown(self):
         print ("Ending session")
@@ -288,11 +286,9 @@ class Case_bookshelf05(unittest.TestCase):
         utils.Find_and_Click("//span[contains(text(),'Delete')]")
         utils.Find_and_Click("//button[contains(text(),'Delete')]")
         time.sleep(2)
-        try:
-            self.assertFalse(utils.Is_Element_Displayed(Document_to_Verify))
-        except:
-            self.assertTrue(True)            
-            print("Document was deleted")
+        self.assertFalse(utils.Validate_if_Element_exist(Document_to_Verify))
+     
+        print("Document was deleted")
 
     def tearDown(self):
         print ("Ending session")
@@ -356,15 +352,143 @@ class Case_bookshelf06(unittest.TestCase):
         utils.Find_and_Click("//span[contains(text(),'Delete')]")
         utils.Find_and_Click("//button[contains(text(),'Delete')]")
         time.sleep(2)
-        try:
-            self.assertFalse(utils.Is_Element_Displayed(Document_to_Verify))
-        except:
-            self.assertTrue(True)            
-            print("Document was deleted")
+        self.assertFalse(utils.Validate_if_Element_exist(Document_to_Verify))
+      
+        print("Document was deleted")
 
     def tearDown(self):
         print ("Ending session")
         utils.Close_Browser()
+
+
+class Case_bookshelf07(unittest.TestCase):
+    # Description : Add a YouTube video to bookshelf resources
+    YoutubeLink = "https://youtu.be/dQw4w9WgXcQ"
+    YoutubeLinkName = "A Link"
+
+    def setUp(self):
+        print ("Opening Browser")
+        utils.Open_Browser("https://my.otus.com/login")
+        print ("Loggin in")
+        utils.Log_in()
+        self.driver = utils.driver
+
+    def test_bookshelf07(self):
+
+        print ("Validating if log in was successful")
+        # to verify if the search results page loaded
+        self.assertIn("Otus",self.driver.title)
+
+        # to verify if the search results page contains any results or no results were found.
+        self.assertNotIn("No results found.",self.driver.page_source)
+
+        print ("Clicking on Bookshelf nav")
+        utils.Find_and_Click(xpath['bookshelf_btn'])
+        self.assertIn("Shared With Me", utils.Get_element_text(xpath['page_title']))
+
+        print ("Clicking on My Bookshelf button")
+        utils.Find_and_Click(xpath['my_bookshelf_nav'])
+        self.assertIn("My Bookshelf", utils.Get_element_text(xpath['page_title']))
+
+        print("Opening the window: Select Resource Type")
+        utils.Find_and_Click(xpath['add_resource_btn'])
+        utils.Find_and_Click(xpath['add_type_resource'])
+
+        print("Selecting Add Youtube Link as resource")
+        utils.Wait_For_Element(xpath['youTube_btn'])
+        utils.Find_and_Click(xpath['youTube_btn'])
+        self.assertTrue(utils.Is_Text_in_Page("Add YouTube Video"))
+        
+        print("Adding Youtube information")
+        utils.Find_and_Input(xpath['add_Youtube_link_input'], self.YoutubeLink)
+        utils.Find_and_Input(xpath['add_youtube_link__name_input'], self.YoutubeLinkName)
+        utils.Find_and_Click(xpath["save_btn"])
+
+        #validate resource and delete
+        print("Verifing file was added")
+        Document_to_Verify = "//span[contains(text(),'"+self.YoutubeLinkName+"')]"
+        utils.Wait_For_Element(Document_to_Verify)
+        self.assertTrue(utils.Is_Element_Displayed(Document_to_Verify))
+
+        print ("Deleting added file " +self.YoutubeLinkName)
+        utils.Find_and_Click("//button[@aria-label='open actions menu' and @color='transparent']")
+        utils.Find_and_Click("//span[contains(text(),'Delete')]")
+        utils.Find_and_Click("//button[contains(text(),'Delete')]")
+        time.sleep(2)
+        self.assertFalse(utils.Validate_if_Element_exist(Document_to_Verify))
+   
+        print("Document was deleted")
+
+    def tearDown(self):
+        print ("Ending session")
+        utils.Close_Browser()
+
+
+
+class Case_bookshelf08(unittest.TestCase):
+    # Description : Add an Audio to bookshelf resources
+
+    def setUp(self):
+        print ("Opening Browser")
+        utils.Open_Browser("https://my.otus.com/login")
+        print ("Loggin in")
+        utils.Log_in()
+        self.driver = utils.driver
+
+    def test_bookshelf08(self):
+
+        print ("Validating if log in was successful")
+        # to verify if the search results page loaded
+        self.assertIn("Otus",self.driver.title)
+
+        # to verify if the search results page contains any results or no results were found.
+        self.assertNotIn("No results found.",self.driver.page_source)
+
+        print ("Clicking on Bookshelf nav")
+        utils.Find_and_Click(xpath['bookshelf_btn'])
+        self.assertIn("Shared With Me", utils.Get_element_text(xpath['page_title']))
+
+        print ("Clicking on My Bookshelf button")
+        utils.Find_and_Click(xpath['my_bookshelf_nav'])
+        self.assertIn("My Bookshelf", utils.Get_element_text(xpath['page_title']))
+
+        print("Opening the window: Select Resource Type")
+        utils.Find_and_Click(xpath['add_resource_btn'])
+        utils.Find_and_Click(xpath['add_type_resource'])
+
+        print("Selecting Audio as resource")
+        utils.Wait_For_Element(xpath['audio_btn'])
+        utils.Find_and_Click(xpath['audio_btn'])
+        utils.Wait_For_Element("//span[contains(text(),'Record Audio')]//ancestor::button")
+        self.assertTrue(utils.Is_Text_in_Page("Add Audio"))
+        
+        utils.Find_and_Click("//span[contains(text(),'Record Audio')]//ancestor::button")
+        time.sleep(2)
+        utils.Find_and_Click("//button[@title='Device']")
+        utils.Find_and_Click("//button[@title='Record']")
+        time.sleep(2)
+        utils.Find_and_Click("//button[@title='Stop']")
+        utils.Find_and_Input("//input[contains(@class,'attach-audio__input')]", "AudioTest01")
+        utils.Find_and_Click(xpath['save_btn'])
+
+        #validate resource and delete
+        print("Verifing file was added")
+        Document_to_Verify = "//span[contains(text(),'AudioTest01')]"
+        utils.Wait_For_Element(Document_to_Verify)
+        self.assertTrue(utils.Is_Element_Displayed(Document_to_Verify))
+
+        print ("Deleting added file ")
+        utils.Find_and_Click("//button[@aria-label='open actions menu' and @color='transparent']")
+        utils.Find_and_Click("//span[contains(text(),'Delete')]")
+        utils.Find_and_Click("//button[contains(text(),'Delete')]")
+        time.sleep(2)
+        self.assertFalse(utils.Validate_if_Element_exist(Document_to_Verify))          
+        print("Document was deleted")
+
+    def tearDown(self):
+        print ("Ending session")
+        utils.Close_Browser()
+
 
 
 if __name__ == "__main__":

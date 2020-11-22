@@ -9,6 +9,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EX
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.common.exceptions import NoSuchElementException
 
 #try this for the firefoxDriveer
 #		driver = webdriver.Chrome(executable_path=r'D:PATHchromedriver.exe')
@@ -73,6 +74,16 @@ def Is_Element_Enable(xpath):
 def Is_Text_in_Page(text):    
     print ("//.[contains(text(),'"+text+"')]")
     return Is_Element_Displayed("//.[contains(text(),'"+text+"')]")
+
+def Validate_if_Element_exist(xpath):
+    driver.implicitly_wait(0.5)
+    try:
+        element = driver.find_element_by_xpath(xpath)
+        driver.implicitly_wait(15)
+        return True
+    except NoSuchElementException:
+        driver.implicitly_wait(15)
+        return False    
 
 def Wait_For_Element(xpath):
     while Is_Element_Displayed(xpath) != True and Is_Element_Displayed != True :

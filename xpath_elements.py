@@ -43,5 +43,7 @@ xpath_dict = {
 
         "add_link_input" : "(//input[contains(@class,'attach-link__input')])[1]",
         "add_link__name_input" : "(//input[contains(@class,'attach-link__input')])[2]",
+        "add_Youtube_link_input" : "//div[@class='attach-link__content-input']/input",
+        "add_youtube_link__name_input" : "//div[contains(text(),'Video Name')]//ancestor::div/following-sibling::div[@class='row']/input",
         "save_btn" : "(//span[contains(text(),'Save')]/ancestor::button)[1]",
 }

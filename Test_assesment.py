@@ -6,7 +6,7 @@ from  xpath_elements import xpath_dict as xpath
 import utils
 
 class Case_Assesment01(unittest.TestCase):
-    # Descriptio : Verify assessment list loaded
+    # Description : Verify assessment list loaded
 
     def setUp(self):
         print ("Opening Browser")

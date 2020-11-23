@@ -12,15 +12,10 @@ from selenium.webdriver.support import expected_conditions as EX
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import NoSuchElementException
 
-#try this for the firefoxDriveer
-#		driver = webdriver.Chrome(executable_path=r'D:PATHchromedriver.exe')
-#		driver = webdriver.Chrome(executable_path=r'D:PATHchromedriver.exe')
-
-
 options = webdriver.FirefoxOptions()
 options.set_preference("media.navigator.permission.disabled", True)
 
-driver = webdriver.Firefox(firefox_options=options)
+driver = webdriver.Firefox(executable_path="./geckodriver.exe", firefox_options=options)
 driver.implicitly_wait(15)
 
 OtusEmail = ""

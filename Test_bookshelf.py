@@ -40,6 +40,7 @@ class Case_bookshelf01(unittest.TestCase):
         self.assertIn("My Drive", utils.Get_element_text(xpath['page_title']))
 
     def tearDown(self):
+        print ("Ending session")
         utils.Close_Browser()
 
 """
@@ -106,11 +107,7 @@ class Case_bookshelf02(unittest.TestCase):
         utils.Find_and_Click("//span[contains(text(),'Delete')]")
         utils.Find_and_Click("//button[contains(text(),'Delete')]")
         time.sleep(2)
-        try:
-            self.assertFalse(utils.Is_Element_Displayed(Document_to_Verify))
-        except:
-            self.assertTrue(True)            
-            print("Document was deleted")
+        self.assertFalse(utils.Validate_if_Element_exist(Document_to_Verify))
 
     def tearDown(self):
         print ("Ending session")

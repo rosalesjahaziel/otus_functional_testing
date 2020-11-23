@@ -7,6 +7,7 @@ from  xpath_elements import xpath_dict as Xpath
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver import ActionChains
 from selenium.webdriver.support import expected_conditions as EX
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import NoSuchElementException
@@ -49,6 +50,12 @@ def Find_and_Click(xpath):
     element = driver.find_element_by_xpath(xpath)
     element.click()
 
+def Find_and_DoubleClick(xpath):
+    Wait_For_Element(xpath)
+    element = driver.find_element_by_xpath(xpath)
+    action = ActionChains(driver)
+    action.double_click(element).perform()
+
 def Send_Keys(keys):
     html = driver.find_element_by_tag_name('html')
     html.send_keys(Keys.PAGE_DOWN)
@@ -89,3 +96,32 @@ def Wait_For_Element(xpath):
     while Is_Element_Displayed(xpath) != True and Is_Element_Displayed != True :
         time.sleep(1)
         print ("Waiting for element " + xpath)
+
+def switch_to_new_window():
+    print ("Switching to new window")
+    driver.switch_to.window(driver.window_handles[-1])
+    driver.maximize_window()
+
+def switch_to_previous_windwo():
+    print ("Switching to previous window")
+    driver.switch_to.window(driver.window_handles[0])
+
+def hover_and_click(xpath):
+    element = driver.find_element_by_xpath(xpath)
+    action = ActionChains(driver).move_to_element(element)
+    action.perform()
+    element.click()
+
+def hover_element(xpath):
+    element = driver.find_element_by_xpath(xpath)
+    action = ActionChains(driver).move_to_element(element)
+    action.perform()
+
+def Switch_To_Iframe(iframe):
+    print ("Switching to previous frame: " + iframe)
+    frame = driver.find_element_by_xpath(iframe)
+    driver.switch_to.frame(frame)
+
+def Switch_To_default():
+    print ("Switching to default content ")
+    driver.switch_to.default_content()

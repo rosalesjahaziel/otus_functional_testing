@@ -42,7 +42,13 @@ class Case_bookshelf01(unittest.TestCase):
     def tearDown(self):
         utils.Close_Browser()
 
-#Resource_To_Add_Name needs to be setup before execute the test
+"""
+Case_bookshelf02:
+Resource_To_Add_Name needs to be setup before execute the test
+This test assumes that you already have access to google drive
+
+"""
+
 class Case_bookshelf02(unittest.TestCase):
     # Description : Add a Google Drive document to Bookshelf resources
     Resource_To_Add_Name = ""
@@ -111,63 +117,64 @@ class Case_bookshelf02(unittest.TestCase):
         utils.Close_Browser()
 
 """
+Case_bookshelf03:
 I couldn't upload a file :(
 skip this test
 """
-class Case_bookshelf03(unittest.TestCase):
-    # Description : Upload a file to bookshelf resources
-    Path_To_file = ""
+# class Case_bookshelf03(unittest.TestCase):
+#     # Description : Upload a file to bookshelf resources
+#     Path_To_file = ""
 
-    @unittest.skip("I couldn't upload a file :(")
-    def setUp(self):
-        print ("Opening Browser")
-        utils.Open_Browser("https://my.otus.com/login")
-        print ("Loggin in")
-        utils.Log_in()
-        self.driver = utils.driver
+#     @unittest.skip("I couldn't upload a file :(")
+#     def setUp(self):
+#         print ("Opening Browser")
+#         utils.Open_Browser("https://my.otus.com/login")
+#         print ("Loggin in")
+#         utils.Log_in()
+#         self.driver = utils.driver
 
-    @unittest.skip("I couldn't upload a file :(")
-    def test_bookshelf03(self):
+#     @unittest.skip("I couldn't upload a file :(")
+#     def test_bookshelf03(self):
 
-        print ("Validating if log in was successful")
-        # to verify if the search results page loaded
-        self.assertIn("Otus",self.driver.title)
+#         print ("Validating if log in was successful")
+#         # to verify if the search results page loaded
+#         self.assertIn("Otus",self.driver.title)
 
-        # to verify if the search results page contains any results or no results were found.
-        self.assertNotIn("No results found.",self.driver.page_source)
+#         # to verify if the search results page contains any results or no results were found.
+#         self.assertNotIn("No results found.",self.driver.page_source)
 
-        print ("Clicking on Bookshelf nav")
-        utils.Find_and_Click(xpath['bookshelf_btn'])
-        self.assertIn("Shared With Me", utils.Get_element_text(xpath['page_title']))
+#         print ("Clicking on Bookshelf nav")
+#         utils.Find_and_Click(xpath['bookshelf_btn'])
+#         self.assertIn("Shared With Me", utils.Get_element_text(xpath['page_title']))
 
-        print ("Clicking on My Bookshelf button")
-        utils.Find_and_Click(xpath['my_bookshelf_nav'])
-        self.assertIn("My Bookshelf", utils.Get_element_text(xpath['page_title']))
+#         print ("Clicking on My Bookshelf button")
+#         utils.Find_and_Click(xpath['my_bookshelf_nav'])
+#         self.assertIn("My Bookshelf", utils.Get_element_text(xpath['page_title']))
 
-        print("Opening the window: Select Resource Type")
-        utils.Find_and_Click(xpath['add_resource_btn'])
-        utils.Find_and_Click(xpath['add_type_resource'])
+#         print("Opening the window: Select Resource Type")
+#         utils.Find_and_Click(xpath['add_resource_btn'])
+#         utils.Find_and_Click(xpath['add_type_resource'])
 
-        print("Selecting upload a file as resource type")
-        utils.Wait_For_Element(xpath['upload_file_btn'])
-        utils.Find_and_Click(xpath['upload_file_btn'])
-        utils.Wait_For_Element("//div[@class='otus-modal-navbar__title' and contains(text(),'Add File')]")
-        self.assertTrue(utils.Is_Text_in_Page("Add File"))
+#         print("Selecting upload a file as resource type")
+#         utils.Wait_For_Element(xpath['upload_file_btn'])
+#         utils.Find_and_Click(xpath['upload_file_btn'])
+#         utils.Wait_For_Element("//div[@class='otus-modal-navbar__title' and contains(text(),'Add File')]")
+#         self.assertTrue(utils.Is_Text_in_Page("Add File"))
         
-        time.sleep(2)
-        print ("Clicking on Browse button")
-        utils.Wait_For_Element("//otus-button[@buttontext='Browse']/button")
-        browseElement = self.driver.find_element_by_xpath("//otus-button[@buttontext='Browse']")
-        self.driver.execute_script('arguments[0].style = ""; arguments[0].style.display = "block"; arguments[0].style.visibility = "visible";', browseElement)
-        browseElement.send_keys('Path_To_file')
-        time.sleep(2)
+#         time.sleep(2)
+#         print ("Clicking on Browse button")
+#         utils.Wait_For_Element("//otus-button[@buttontext='Browse']/button")
+#         browseElement = self.driver.find_element_by_xpath("//otus-button[@buttontext='Browse']")
+#         self.driver.execute_script('arguments[0].style = ""; arguments[0].style.display = "block"; arguments[0].style.visibility = "visible";', browseElement)
+#         browseElement.send_keys('Path_To_file')
+#         time.sleep(2)
 
-    @unittest.skip("I couldn't upload a file :(")
-    def tearDown(self):
-        print ("Ending session")
-        utils.Close_Browser()
+#     @unittest.skip("I couldn't upload a file :(")
+#     def tearDown(self):
+#        print ("Ending session")
+#       utils.Close_Browser()
 
-#Link to a document needs to be setup before execute the test
+#Case_bookshelf04: Link to a document needs to be setup before execute the test
 class Case_bookshelf04(unittest.TestCase):
     # Description : Add a Link to bookshelf resources
     Link = "https://youtu.be/dQw4w9WgXcQ"
@@ -231,7 +238,6 @@ class Case_bookshelf04(unittest.TestCase):
         print ("Ending session")
         utils.Close_Browser()
 
-
 class Case_bookshelf05(unittest.TestCase):
     # Description : Add a photo to bookshelf resources
 
@@ -293,7 +299,6 @@ class Case_bookshelf05(unittest.TestCase):
     def tearDown(self):
         print ("Ending session")
         utils.Close_Browser()
-
 
 class Case_bookshelf06(unittest.TestCase):
     # Description : Add a video to bookshelf resources
@@ -360,7 +365,6 @@ class Case_bookshelf06(unittest.TestCase):
         print ("Ending session")
         utils.Close_Browser()
 
-
 class Case_bookshelf07(unittest.TestCase):
     # Description : Add a YouTube video to bookshelf resources
     YoutubeLink = "https://youtu.be/dQw4w9WgXcQ"
@@ -422,8 +426,6 @@ class Case_bookshelf07(unittest.TestCase):
     def tearDown(self):
         print ("Ending session")
         utils.Close_Browser()
-
-
 
 class Case_bookshelf08(unittest.TestCase):
     # Description : Add an Audio to bookshelf resources
@@ -489,7 +491,164 @@ class Case_bookshelf08(unittest.TestCase):
         print ("Ending session")
         utils.Close_Browser()
 
+"""
+Case_bookshelf09:
+# variables need to be set befor executing
+fileName_from_oneDrive
+oneDriveUser
+OneDrivePassword
+"""
+class Case_bookshelf09(unittest.TestCase):
+    # Description : Add a OneDrive document to Bookshelf resources
+    fileName_from_oneDrive =''
+    oneDriveUser = ""
+    OneDrivePassword = ""
 
+    def setUp(self):
+        print ("Opening Browser")
+        utils.Open_Browser("https://my.otus.com/login")
+        print ("Loggin in")
+        utils.Log_in()
+        self.driver = utils.driver
+
+    def test_bookshelf09(self):
+
+        print ("Validating if log in was successful")
+        # to verify if the search results page loaded
+        self.assertIn("Otus",self.driver.title)
+
+        # to verify if the search results page contains any results or no results were found.
+        self.assertNotIn("No results found.",self.driver.page_source)
+
+        print ("Clicking on Bookshelf nav")
+        utils.Find_and_Click(xpath['bookshelf_btn'])
+        self.assertIn("Shared With Me", utils.Get_element_text(xpath['page_title']))
+
+        print ("Clicking on My Bookshelf button")
+        utils.Find_and_Click(xpath['my_bookshelf_nav'])
+        self.assertIn("My Bookshelf", utils.Get_element_text(xpath['page_title']))
+
+        print("Opening the window: Select Resource Type")
+        utils.Find_and_Click(xpath['add_resource_btn'])
+        utils.Find_and_Click(xpath['add_type_resource'])
+
+        print("Selecting OneDrive as resource")
+        utils.Wait_For_Element(xpath['oneDrive_btn'])
+        utils.Find_and_Click(xpath['oneDrive_btn'])
+        utils.Wait_For_Element("//otus-button[contains(@buttontext,'Get OneDrive Resources')]")
+        self.assertTrue(utils.Is_Text_in_Page("Add from OneDrive"))
+        
+        print ("Opening One Drive")
+        time.sleep(2)
+        utils.Find_and_Click("//otus-button[contains(@buttontext,'Get OneDrive Resources')]/button")
+        time.sleep(3)
+        
+        print("Switching to oneDrive window")
+        utils.switch_to_new_window()
+
+        print("sign in to oneDrive")
+        utils.Find_and_Input("//input[@id='i0116']",self.oneDriveUser)
+        utils.Find_and_Click("//input[@id='idSIButton9']")
+        utils.Find_and_Input("//input[@id='i0118']", self.OneDrivePassword)
+        utils.Find_and_Click("//input[@id='idSIButton9']")
+        utils.Wait_For_Element("//span[@class='od-ItemPickerHeader-applicationLogo']")
+
+        print ("Selecting File")
+        utils.hover_element("//img[contains(@src,'"+self.fileName_from_oneDrive+"')]//ancestor::div[contains(@class,'ms-List-cell')]//button")
+        time.sleep(1)
+        utils.hover_and_click("//img[contains(@src,'cv.docx')]//ancestor::div[contains(@class,'ms-List-cell')]//button/following-sibling::span")
+        print ("saving File")
+        utils.Find_and_Click("(//span[@class='od-ButtonBar-main']/button)[1]")
+        time.sleep(2)
+        utils.switch_to_previous_windwo()        
+        time.sleep(2)
+        utils.Find_and_Click(xpath['save_btn'])
+
+        #validate resource and delete
+        print("Verifing file was added")
+        Document_to_Verify = "//span[contains(text(),'"+self.fileName_from_oneDrive+"')]"
+        utils.Wait_For_Element(Document_to_Verify)
+        self.assertTrue(utils.Is_Element_Displayed(Document_to_Verify))
+
+        print ("Deleting added file ")
+        utils.Find_and_Click("//button[@aria-label='open actions menu' and @color='transparent']")
+        utils.Find_and_Click("//span[contains(text(),'Delete')]")
+        utils.Find_and_Click("//button[contains(text(),'Delete')]")
+        time.sleep(2)
+        self.assertFalse(utils.Validate_if_Element_exist(Document_to_Verify))          
+        print("Document was deleted")
+
+    def tearDown(self):
+        print ("Ending session")
+        utils.Close_Browser()
+
+class Case_bookshelf10(unittest.TestCase):
+    # Description : Add a page file to bookshelf resources.
+    def setUp(self):
+        print ("Opening Browser")
+        utils.Open_Browser("https://my.otus.com/login")
+        print ("Loggin in")
+        utils.Log_in()
+        self.driver = utils.driver
+
+    def test_bookshelf10(self):
+
+        print ("Validating if log in was successful")
+        # to verify if the search results page loaded
+        self.assertIn("Otus",self.driver.title)
+
+        # to verify if the search results page contains any results or no results were found.
+        self.assertNotIn("No results found.",self.driver.page_source)
+
+        print ("Clicking on Bookshelf nav")
+        utils.Find_and_Click(xpath['bookshelf_btn'])
+        self.assertIn("Shared With Me", utils.Get_element_text(xpath['page_title']))
+
+        print ("Clicking on My Bookshelf button")
+        utils.Find_and_Click(xpath['my_bookshelf_nav'])
+        self.assertIn("My Bookshelf", utils.Get_element_text(xpath['page_title']))
+
+        print("Opening the window: Select Resource Type")
+        utils.Find_and_Click(xpath['add_resource_btn'])
+        utils.Find_and_Click(xpath['add_type_resource'])
+
+        print("Selecting Page as resource")
+        utils.Wait_For_Element(xpath['Page_btn'])
+        utils.Find_and_Click(xpath['Page_btn'])
+        utils.Wait_For_Element("//input[contains(@class,'attach-page__input')]")
+        self.assertTrue(utils.Is_Text_in_Page("Add Page"))
+        
+        print ("Creating Page")
+        utils.Find_and_Input("//input[contains(@class,'attach-page__input')]","My Test Page")
+        utils.Find_and_Click("//span[contains(text(),'Next')]//parent::button")
+        
+        print("Writting a new page")
+        utils.Wait_For_Element("//iframe[contains(@title,'Rich Text Editor')]")
+
+        utils.Find_and_Click("//a[@title='HTML']")
+        utils.Find_and_Input("//div[contains(@id,'_contents')]/textarea","I'm a Test :D")
+        time.sleep(1)
+        utils.Find_and_Click("//a[@title='HTML']")
+        time.sleep(2)
+        utils.Find_and_Click("//span[contains(text(),'Done')]/ancestor::button")
+
+        #validate resource and delete
+        print("Verifing file was added")
+        Document_to_Verify = "//span[contains(text(),'My Test Page')]"
+        utils.Wait_For_Element(Document_to_Verify)
+        self.assertTrue(utils.Is_Element_Displayed(Document_to_Verify))
+
+        print ("Deleting added file ")
+        utils.Find_and_Click("//button[@aria-label='open actions menu' and @color='transparent']")
+        utils.Find_and_Click("//span[contains(text(),'Delete')]")
+        utils.Find_and_Click("//button[contains(text(),'Delete')]")
+        time.sleep(2)
+        self.assertFalse(utils.Validate_if_Element_exist(Document_to_Verify))          
+        print("Document was deleted")
+
+    def tearDown(self):
+        print ("Ending session")
+        utils.Close_Browser()
 
 if __name__ == "__main__":
     unittest.main()

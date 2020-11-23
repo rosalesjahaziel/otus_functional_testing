@@ -37,8 +37,8 @@ xpath_dict = {
         "youTube_btn" : "(//span[contains(text(),'YouTube')])[1]",
         "audio_btn" : "(//span[contains(text(),'Audio')])[1]",
         "googleDrive_btn" : "(//img[contains(@src,'drive.png')]/ancestor::div[1])[1]",
-        "oneDrive_btn" : "(//img[contains(@src,'360.png')])[1]",
-        "Page_btn" : "//i[@class='far fa-file ng-star-inserted']",
+        "oneDrive_btn" : "(//img[contains(@src,'360.png')])[1]/parent::div",
+        "Page_btn" : "//i[contains(@class,'far fa-file')]/parent::div",
         "google_drive_save_btn" : "//div[contains(@class,'small-centered')]//button",
 
         "add_link_input" : "(//input[contains(@class,'attach-link__input')])[1]",
